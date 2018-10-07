@@ -1,4 +1,5 @@
 import React from 'react';
+import Home from './pages/Home';
 import { Header } from './components';
 
 const App = () => (
@@ -6,6 +7,9 @@ const App = () => (
         <Header>
             <span>F1 World Champions</span>
         </Header>
+        <div className="container">
+            <Home />
+        </div>
     </div>
   );
 
