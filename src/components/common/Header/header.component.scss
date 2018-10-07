@@ -1,0 +1,21 @@
+.header {
+    background-color: $color__primary;
+    color: #FFF;
+    font-size: 1.4rem;
+    @include shadow-d2();
+
+    &__container {
+        min-height: 4rem;
+        max-width: $container__width;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+    }
+
+    &__logo{
+        max-height: 2.5rem;
+    }
+}

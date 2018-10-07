@@ -1,2 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 @import 'reset';
+
+html {
+    font-size: 14px;
+}
+  
+body {
+    background-color: $color__background;
+    font-family: 'Open Sans', sans-serif;
+    color: $color__text;
+    padding: 0;
+    margin: 0;
+}
