@@ -1,0 +1,29 @@
+.season-details {
+    &__table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top:1rem;
+  
+        th,td {
+          padding: .4rem .7rem;
+          border: 1px solid #ddd;
+          text-align: left;
+          font-size: 0.9em;
+          vertical-align: top;
+        }
+        th{
+          background-color: #EEE5E9;
+          font-weight: bold;
+        }
+        td {
+          background-color: #FFF;
+        }
+
+        tr.winner{
+          background-color: #EAE0D5;
+          td {
+            background-color: transparent;
+          }
+        }
+      }
+}
