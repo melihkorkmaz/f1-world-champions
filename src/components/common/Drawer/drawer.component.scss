@@ -1,0 +1,47 @@
+.drawer {
+    width: 950px;
+    position: fixed;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background-color: $color__background;
+    transform: translateX(1000px);
+    transition: transform 0.3s;
+    z-index: 1000;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    @include shadow-d3-left();
+  
+    &.open {
+      transform: translateX(0);
+      transition: transform 0.3s;
+    }
+
+    &__title-container {
+      background: $color__primary;
+      padding: 1rem 1.5rem;
+      box-sizing: border-box;
+      min-height: 4rem;
+      border-left: 1px solid #d0d0d0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__title {
+      font-size: 1.7rem;
+      color: #FFF;
+    }
+
+    &__close-btn {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #FFF;
+      cursor: pointer;
+    }
+  
+    &__body {
+      padding: 1.5rem;
+      overflow-y: auto;
+    }
+  }
