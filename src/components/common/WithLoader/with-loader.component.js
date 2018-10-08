@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './with-loader.component.scss';
 
-const WithLoader = ({ isLoading, children }) => (
-    isLoading
-    ? <div className="sk-fading-circle">
+const renderLoader = () => (
+    <div className="sk-fading-circle">
         <div className="sk-circle1 sk-circle"></div>
         <div className="sk-circle2 sk-circle"></div>
         <div className="sk-circle3 sk-circle"></div>
@@ -18,10 +17,22 @@ const WithLoader = ({ isLoading, children }) => (
         <div className="sk-circle11 sk-circle"></div>
         <div className="sk-circle12 sk-circle"></div>
     </div>
-    : children);
+);
+
+const renderError = message => <div className="error">{message}</div>;
+
+const WithLoader = ({ isLoading, hasError, errorMessage, children }) => {
+    if (isLoading) {
+        return renderLoader();
+    }
+
+    return hasError ? renderError(errorMessage) : children;
+};
 
 WithLoader.propTypes = {
     isLoading: PropTypes.bool,
+    hasError: PropTypes.bool,
+    errorMessage: PropTypes.string,
     children: PropTypes.any.isRequired
 };
 export default WithLoader;

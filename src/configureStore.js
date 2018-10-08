@@ -1,3 +1,10 @@
+/**
+ * Module for configuring Redux store. I have only one reducer but I created
+ * a root reducer to able to expand it in the future.
+ *
+ * I used 'thunk' middleware for async actions. I also add redux dev tool for
+ * development state.
+ */
 import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 

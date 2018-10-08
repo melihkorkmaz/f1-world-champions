@@ -1,4 +1,6 @@
-
+/**
+ * HTTP helper for HTTP operations. It caches the same requests.
+ */
 const cache = {};
 const get = (url) => {
     if (cache[url]) {
@@ -12,8 +14,6 @@ const get = (url) => {
 };
 
 // We can extend this module for POST, PUT etc.
-
-
 export default {
     get
 };

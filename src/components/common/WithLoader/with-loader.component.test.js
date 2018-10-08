@@ -22,4 +22,13 @@ describe('With Loader', () => {
         expect(wrapper.find('.sk-fading-circle').exists()).toBeTruthy();
         expect(wrapper.find('#test-div').exists()).toBeFalsy();
     });
+
+    it('should render error message if has error', () => {
+        wrapper.setProps({ isLoading: false, hasError: true, errorMessage: 'fake-message' });
+        expect(wrapper.find('.sk-fading-circle').exists()).toBeFalsy();
+        expect(wrapper.find('#test-div').exists()).toBeFalsy();
+        expect(wrapper.find('.error').exists()).toBeTruthy();
+        expect(wrapper.find('.error').text()).toEqual('fake-message');
+    });
+
 });

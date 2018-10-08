@@ -10,8 +10,9 @@ const fetchSeason = yearOfSeason => (dispatch) => {
     dispatch(actions.startFetchSeason());
     return api.fetchSeason(yearOfSeason).then(result => (
         dispatch(actions.endFetchSeason(result))
-    )).catch(() => {
+    )).catch((err) => {
         // @TODO: Log error
+        dispatch(actions.onFetchSeasonError(err));
     });
 };
 

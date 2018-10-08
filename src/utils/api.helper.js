@@ -2,8 +2,13 @@ import config from '../config';
 import schema from './schema.mapper';
 import httpHelper from './http.helper';
 
+// Url helpers for creating request url
 const seasonResultURL = year => `${config.baseApiUrl}/${year}/results/1.json`;
 const seasonStandingsURL = year => `${config.baseApiUrl}/${year}/driverStandings.json`;
+
+// Private fetch functions
+const fetchSeasonStandings = year => httpHelper.get(seasonStandingsURL(year)).then(data => schema.mapStandings(data));
+const fetchSeasonRaces = year => httpHelper.get(seasonResultURL(year)).then(data => schema.mapRaces(data));
 
 /**
  * In general, seasons list might be requested from an API.
@@ -18,9 +23,6 @@ const fetchSeasons = () => new Promise((resolve) => {
     }
     resolve(list);
   });
-
-const fetchSeasonStandings = year => httpHelper.get(seasonStandingsURL(year)).then(data => schema.mapStandings(data));
-const fetchSeasonRaces = year => httpHelper.get(seasonResultURL(year)).then(data => schema.mapRaces(data));
 
 const fetchSeason = year => (
   Promise.all([fetchSeasonStandings(year), fetchSeasonRaces(year)])

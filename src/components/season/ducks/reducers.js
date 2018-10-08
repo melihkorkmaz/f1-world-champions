@@ -32,6 +32,8 @@ const seasonReducer = (state = defaultState, action) => {
             ...action.payload
         }
       };
+    case types.FETCH_SEASON_RESULT_ERROR:
+      return { ...state, seasonDetails: { isFetching: false, hasErrors: true, errorMessage: action.payload } };
     default:
       return state;
   }

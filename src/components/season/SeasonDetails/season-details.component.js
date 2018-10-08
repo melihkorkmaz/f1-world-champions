@@ -18,10 +18,10 @@ class SeasonDetails extends React.PureComponent {
   }
 
   render() {
-    const { winner = {}, races = [] } = this.props.season || {};
+    const { winner = {}, races = [], isFetching, hasErrors } = this.props.season || {};
 
     return (
-      <WithLoader isLoading={this.props.season.isFetching}>
+      <WithLoader isLoading={isFetching} hasError={hasErrors} errorMessage="Something went wrong, please try again!">
         <div className="season-details">
           <span>
             Season champion is: {winner.driver ? winner.driver.name : ''}

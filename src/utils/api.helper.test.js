@@ -1,6 +1,6 @@
 /* global describe, jest, it, expect */
 import httpHelper from './http.helper';
-import apiTestResponses from './api-test-response.json';
+import apiTestResponses from '../data/api-test-response.json';
 import api, { seasonResultURL, seasonStandingsURL } from './api.helper';
 
 const createHttpMock = () => {
