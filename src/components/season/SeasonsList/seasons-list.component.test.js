@@ -5,7 +5,16 @@ import SeasonsList from './seasons-list.component';
 
 describe('Seasons list component', () => {
     let wrapper;
-    const seasons = [2001, 2002, 2003];
+    const seasons = [{
+        year: 2003,
+        winner: { name: 'fake-name-1' }
+    }, {
+        year: 2004,
+        winner: { name: 'fake-name-2' }
+    }, {
+        year: 2005,
+        winner: { name: 'fake-name-3' }
+    }];
     beforeEach(() => {
         wrapper = shallow(<SeasonsList seasons={seasons} onSeasonSelect={() => {}} listSeasons={() => {}}/>);
     });
@@ -14,9 +23,9 @@ describe('Seasons list component', () => {
         expect(wrapper.exists()).toBeTruthy();
         const seasonDiv = wrapper.childAt(0);
         expect(seasonDiv.children().length).toEqual(3);
-        expect(seasonDiv.childAt(0).find('.seasons__item').text()).toEqual('2001');
-        expect(seasonDiv.childAt(1).find('.seasons__item').text()).toEqual('2002');
-        expect(seasonDiv.childAt(2).find('.seasons__item').text()).toEqual('2003');
+        expect(seasonDiv.childAt(0).find('.seasons__year').text()).toEqual('2003');
+        expect(seasonDiv.childAt(1).find('.seasons__year').text()).toEqual('2004');
+        expect(seasonDiv.childAt(2).find('.seasons__year').text()).toEqual('2005');
     });
 
     it('should return selected season', () => {
@@ -29,6 +38,6 @@ describe('Seasons list component', () => {
         seasonDiv.childAt(0).find('.seasons__item').simulate('click');
 
         expect(onSelectMock.mock.calls.length).toEqual(1);
-        expect(onSelectMock.mock.calls[0][0]).toEqual(2001);
+        expect(onSelectMock.mock.calls[0][0]).toEqual(2003);
     });
 });

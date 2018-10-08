@@ -10,19 +10,26 @@ const seasonStandingsURL = year => `${config.baseApiUrl}/${year}/driverStandings
 const fetchSeasonStandings = year => httpHelper.get(seasonStandingsURL(year)).then(data => schema.mapStandings(data));
 const fetchSeasonRaces = year => httpHelper.get(seasonResultURL(year)).then(data => schema.mapRaces(data));
 
-/**
- * In general, seasons list might be requested from an API.
- * But in our app we don't need season details to list seasons as years.
- * So I'm mocking year list as a number array. But in the future,
- * we can change this function to get a list from remote API
- */
-const fetchSeasons = () => new Promise((resolve) => {
-    const list = [];
-    for (let i = config.lastSeasonToShow; i >= config.firstSeasonToShow; i--) {
-      list.push(i);
+
+const fetchSeasons = (lastSeason = config.lastSeasonToShow, firstSeasonToShow = config.firstSeasonToShow) => {
+    const promises = [];
+    
+    for (let i = lastSeason; i >= firstSeasonToShow; i--) {
+      promises.push(httpHelper.get(seasonStandingsURL(i)));
     }
-    resolve(list);
-  });
+
+    return Promise.all(promises).then((res) => {
+      const mappedData = res
+        .map(data => schema.mapStandings(data))
+        .map(data => ({
+          year: data.season,
+          winner: {
+            name: `${data.DriverStandings[0].Driver.givenName} ${data.DriverStandings[0].Driver.familyName}`
+          }
+        }));
+      return mappedData;
+    });
+};
 
 const fetchSeason = year => (
   Promise.all([fetchSeasonStandings(year), fetchSeasonRaces(year)])

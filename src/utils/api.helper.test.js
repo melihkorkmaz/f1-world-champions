@@ -1,4 +1,4 @@
-/* global describe, jest, it, expect */
+/* global describe, jest, it, expect, beforeEach, afterEach */
 import httpHelper from './http.helper';
 import apiTestResponses from '../data/api-test-response.json';
 import api, { seasonResultURL, seasonStandingsURL } from './api.helper';
@@ -21,13 +21,17 @@ const createHttpMock = () => {
 
 describe('API Helper', () => {
 
+  let httpMock;
+  beforeEach(() => {
+    httpMock = createHttpMock();
+  });
+
   it('should return seasons', async () => {
-    const seasonList = await api.fetchSeasons();
+    const seasonList = await api.fetchSeasons(2014, 2014);
     expect(seasonList.length).toBeGreaterThan(0);
   });
 
   it('should return season details', async () => {
-    const httpMock = createHttpMock();
     const seasonDetails = await api.fetchSeason(2014);
 
     expect(httpMock).toHaveBeenCalled();
@@ -43,5 +47,9 @@ describe('API Helper', () => {
       driverId: 'rosberg',
       name: 'Nico Rosberg'
     });
+  });
+
+  afterEach(() => {
+    httpMock.mockClear();
   });
 });

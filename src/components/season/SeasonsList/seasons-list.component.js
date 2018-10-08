@@ -16,9 +16,10 @@ class SeasonsList extends React.PureComponent {
       <WithLoader isLoading={isFetching}>
         <div className="seasons">
           {seasons.map(season => (
-            <div className="seasons__item-container" key={season}>
-              <div className="seasons__item" onClick={onSeasonSelect.bind(null, season)} >
-                {season}
+            <div className="seasons__item-container" key={season.year}>
+              <div className="seasons__item" onClick={onSeasonSelect.bind(null, season.year)} >
+                <span className="seasons__year">{season.year}</span>
+                <span className="seasons__winner">{season.winner.name}</span>
               </div>
             </div>
           ))}
@@ -30,7 +31,7 @@ class SeasonsList extends React.PureComponent {
 
 SeasonsList.propTypes = {
   onSeasonSelect: PropTypes.func.isRequired,
-  seasons: PropTypes.arrayOf(PropTypes.number),
+  seasons: PropTypes.arrayOf(PropTypes.object),
   listSeasons: PropTypes.func,
   isFetching: PropTypes.bool
 };
