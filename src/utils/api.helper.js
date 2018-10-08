@@ -1,5 +1,6 @@
 import config from '../config';
 import schema from './schema.mapper';
+import httpHelper from './http.helper';
 
 const seasonResultURL = year => `${config.baseApiUrl}/${year}/results/1.json`;
 const seasonStandingsURL = year => `${config.baseApiUrl}/${year}/driverStandings.json`;
@@ -18,13 +19,8 @@ const fetchSeasons = () => new Promise((resolve) => {
     resolve(list);
   });
 
-const fetchSeasonStandings = year => fetch(seasonStandingsURL(year))
-    .then(data => data.json())
-    .then(data => schema.mapStandings(data));
-
-const fetchSeasonRaces = year => (
-  fetch(seasonResultURL(year)).then(data => data.json()).then(data => schema.mapRaces(data))
-);
+const fetchSeasonStandings = year => httpHelper.get(seasonStandingsURL(year)).then(data => schema.mapStandings(data));
+const fetchSeasonRaces = year => httpHelper.get(seasonResultURL(year)).then(data => schema.mapRaces(data));
 
 const fetchSeason = year => (
   Promise.all([fetchSeasonStandings(year), fetchSeasonRaces(year)])
