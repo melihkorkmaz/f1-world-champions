@@ -1,12 +1,33 @@
 import React from 'react';
-import { SeasonsList } from '../components';
+import { SeasonsList, SeasonDetails, Drawer } from '../components';
 
-const seasons = [2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005];
-const Home = () => (
-    <div>
+class Home extends React.PureComponent {
+  constructor() {
+    super();
+
+    this.state = {
+      drawerOpen: false,
+      selectedYear: null
+    };
+  }
+
+  render() {
+    return (
+      <div>
         <h2>Seasons</h2>
-        <SeasonsList seasons={seasons} onSeasonSelect={() => {}}/>
-    </div>
-);
+        <SeasonsList onSeasonSelect={year => this.setState({
+          selectedYear: year,
+          drawerOpen: true
+        })} />
+        <Drawer
+          title={`F1 ${this.state.selectedYear} Season`}
+          open={this.state.drawerOpen}
+          onClose={() => this.setState({ drawerOpen: false })} >
+            <SeasonDetails yearOfSeason={this.state.selectedYear} />
+        </Drawer>
+      </div>
+    );
+  }
+}
 
 export default Home;

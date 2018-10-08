@@ -12,7 +12,7 @@ const Drawer = ({ title, children, open, onClose }) => {
             <span className="drawer__close-btn" onClick={onClose}>X</span>
         </div>
         <div className="drawer__body">
-            {children}
+            { open ? children : null }
         </div>
     </div>
   );

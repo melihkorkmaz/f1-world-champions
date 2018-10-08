@@ -44,4 +44,9 @@
       padding: 1.5rem;
       overflow-y: auto;
     }
+
+    @media screen and (max-width: $xl-min-width) {
+      width: 100%;
+      transform: translateX(110%);
+    }
   }

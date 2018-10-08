@@ -48,7 +48,7 @@ describe('Season details component', () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = shallow(<SeasonDetails season={season} />);
+        wrapper = shallow(<SeasonDetails season={season} yearOfSeason={2017} fetchSeason={() => {}} />);
     });
 
     it('should render successfully', () => {
@@ -56,7 +56,7 @@ describe('Season details component', () => {
     });
 
     it('should set season winner', () => {
-        expect(wrapper.childAt(0).text()).toEqual(`Season champion is: ${season.winner.driver.name}`);
+        expect(wrapper.find('.season-details').childAt(0).text()).toEqual(`Season champion is: ${season.winner.driver.name}`);
     });
 
     it('should render table', () => {
