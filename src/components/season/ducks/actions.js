@@ -9,6 +9,11 @@ const endFetchSeasonsList = seasons => ({
     payload: seasons
 });
 
+const onFetchSeasonsListError = errMessage => ({
+    type: types.FETCH_SEASONS_LIST_ERROR,
+    payload: errMessage
+});
+
 const startFetchSeason = () => ({
     type: types.START_FETCH_SEASON_RESULT
 });
@@ -26,6 +31,7 @@ const onFetchSeasonError = errMessage => ({
 export default {
     startFetchSeasonsList,
     endFetchSeasonsList,
+    onFetchSeasonsListError,
     startFetchSeason,
     endFetchSeason,
     onFetchSeasonError

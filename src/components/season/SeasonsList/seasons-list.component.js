@@ -11,9 +11,9 @@ class SeasonsList extends React.PureComponent {
   }
 
   render() {
-    const { seasons = [], onSeasonSelect, isFetching } = this.props;
+    const { seasons = [], onSeasonSelect, isFetching, hasErrors } = this.props;
     return (
-      <WithLoader isLoading={isFetching}>
+      <WithLoader isLoading={isFetching} hasError={hasErrors} errorMessage="Something went wrong, please try again!">
         <div className="seasons">
           {seasons.map(season => (
             <div className="seasons__item-container" key={season.year}>
@@ -33,7 +33,8 @@ SeasonsList.propTypes = {
   onSeasonSelect: PropTypes.func.isRequired,
   seasons: PropTypes.arrayOf(PropTypes.object),
   listSeasons: PropTypes.func,
-  isFetching: PropTypes.bool
+  isFetching: PropTypes.bool,
+  hasErrors: PropTypes.bool
 };
 
 export default SeasonsList;
