@@ -15,7 +15,7 @@ const fetchSeasonRaces = year => httpHelper.get(seasonResultURL(year)).then(data
 const fetchSeasons = (lastSeason = config.lastSeasonToShow, firstSeason = config.firstSeasonToShow) => httpHelper
   .get(allStandigsURL())
   .then(data => schema.mapStandingsList(data))
-  .then(data => data.filter(item => item.year >= firstSeason && item.year <= lastSeason));
+  .then(data => data.filter(item => item.year >= firstSeason && item.year <= lastSeason).reverse());
 
 const fetchSeason = year => (
   Promise.all([fetchSeasonStandings(year), fetchSeasonRaces(year)])
