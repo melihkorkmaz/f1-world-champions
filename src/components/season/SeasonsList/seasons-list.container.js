@@ -5,7 +5,7 @@ import SeasonsList from './seasons-list.component';
 const mapStateToProps = state => ({
     seasons: seasonSelectors.seasons(state),
     isFetching: seasonSelectors.seasonsIsFetching(state),
-    hasErrors : seasonSelectors.seasonHasErrors(state)
+    hasErrors: seasonSelectors.seasonHasErrors(state)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -48,7 +48,7 @@ describe('Season details component', () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = shallow(<SeasonDetails season={season} yearOfSeason={'2017'} fetchSeason={() => {}} />);
+        wrapper = shallow(<SeasonDetails season={season} yearOfSeason={2017} fetchSeason={() => {}} />);
     });
 
     it('should render successfully', () => {

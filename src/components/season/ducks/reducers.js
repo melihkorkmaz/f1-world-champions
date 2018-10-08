@@ -18,7 +18,7 @@ const seasonReducer = (state = defaultState, action) => {
         years: { isFetching: false, list: action.payload }
       };
     case types.FETCH_SEASONS_LIST_ERROR:
-      return { ...state, years: { isFetching: false, hasErrors : true, errorMessage : action.payload, list: [] }};
+      return { ...state, years: { isFetching: false, hasErrors: true, errorMessage: action.payload, list: [] } };
     case types.START_FETCH_SEASON_RESULT:
       return {
         ...state,

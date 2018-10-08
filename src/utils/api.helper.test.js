@@ -1,14 +1,14 @@
 /* global describe, jest, it, expect, beforeEach, afterEach */
 import httpHelper from './http.helper';
 import apiTestResponses from '../data/api-test-response.json';
-import api, { seasonResultURL, seasonStandingsURL } from './api.helper';
+import api, { seasonResultURL, seasonStandingsURL, allStandigsURL } from './api.helper';
 
 const createHttpMock = () => {
   const httpHelperMock = jest.spyOn(httpHelper, 'get');
   httpHelperMock.mockImplementation((url) => {
     let responseJSON = {};
 
-    if (url === seasonStandingsURL(2014)) {
+    if (url === seasonStandingsURL(2014) || url === allStandigsURL()) {
       responseJSON = apiTestResponses.standings;
     } else if (url === seasonResultURL(2014)) {
       responseJSON = apiTestResponses.results;

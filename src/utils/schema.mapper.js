@@ -20,6 +20,10 @@ const mapRaces = data => (
 );
 
 const mapStandings = data => data.MRData.StandingsTable.StandingsLists[0];
+const mapStandingsList = data => data.MRData.StandingsTable.StandingsLists.map(listItem => ({
+    year: parseInt(listItem.season, 10),
+    winner: { name: `${listItem.DriverStandings[0].Driver.givenName} ${listItem.DriverStandings[0].Driver.familyName}` }
+}));
 
 const mapSeason = (data) => {
     const [standings, races] = data;
@@ -43,5 +47,5 @@ const mapSeason = (data) => {
 
 
 export default {
-    mapRaces, mapSeason, mapStandings
+    mapRaces, mapSeason, mapStandings, mapStandingsList
 };

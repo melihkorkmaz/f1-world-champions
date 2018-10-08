@@ -70,7 +70,7 @@ class SeasonDetails extends React.PureComponent {
 }
 
 SeasonDetails.propTypes = {
-  yearOfSeason: PropTypes.string,
+  yearOfSeason: PropTypes.number,
   season: PropTypes.object,
   fetchSeason: PropTypes.func
 };
